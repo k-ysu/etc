@@ -1,0 +1,77 @@
+syntax on
+set ts=4 sts=4 sw=4 noet
+set foldmethod=marker
+set shiftwidth=4
+set cindent
+set autoindent
+set hlsearch
+set ignorecase
+set smartcase
+set showmatch
+set laststatus=2
+set incsearch
+set background=dark
+set list
+set nu
+set foldmethod=marker
+set modeline
+set tabstop=4
+set shiftwidth=4
+set softtabstop=0
+    set expandtab
+function! SOLSpaceHilight()
+    syntax match SOLSpace "^\s\+" display containedin=ALL
+    highlight SOLSpace term=underline ctermbg=Black
+endf
+if has("syntax")
+    syntax on
+        augroup invisible
+        autocmd! invisible
+        autocmd BufNew,BufRead * call SOLSpaceHilight()
+    augroup END
+endif
+
+
+
+nmap <unique> <silent> <C-x><C-b> :LUBufs ^.*<CR>
+"nmap <unique> <silent> <C-S> :LUBufs <CR>^.*
+let g:LookupFile_AlwaysAcceptFirst=1
+let g:LookupFile_PreserveLastPattern=0
+let g:LookupFile_AllowNewFiles=0
+
+highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=white
+match ZenkakuSpace /??/
+
+cmap <C-a> <Home>
+cmap <C-e> <End>
+cmap <C-f> <Right>
+cmap <C-b> <Left>
+imap <C-x><C-s> <ESC>:w<CR>a
+
+imap <C-a> <Home>
+imap <C-e> <End>
+imap <C-f> <Right>
+imap <C-b> <Left>
+
+filetype on
+filetype indent on
+filetype plugin on
+
+set hidden
+
+" set list
+set lcs=tab:>.,trail:-
+
+"au BufNewFile,BufRead svn-commit*.tmp execute "normal Iauthor: komori"
+
+
+set nocompatible
+set backspace=indent,eol,start
+set whichwrap=b,s,h,l,<,>,[,]
+
+" chara set
+set encoding=utf-8
+"set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8
+set fileformats=unix,dos,mac
+set fenc=utf-8
